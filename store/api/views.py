@@ -1,6 +1,7 @@
-from store.models import Product , OrderItem , ShippingAddress , FullOrder , Purchased_item
+from store.models import Product , OrderItem , ShippingAddress , FullOrder , Purchased_item,Contact
 from store.models import ProductCategories
 from django.http import JsonResponse
+from django.urls import reverse
 from .serializers import(
     ProductCategorySerializer,
     OrderItemSerializer,
@@ -15,6 +16,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.core import serializers
+from django.http import HttpResponse , HttpResponseRedirect ,Http404
 
 # Create your views here.
 
@@ -398,3 +400,15 @@ class MakePayment(APIView):
         obj.save()
 
         return Response(status=status.HTTP_200_OK)
+
+   
+def contact(request):
+    if request.method=='POST':
+        name=request.POST.get('name')
+        email=request.POST.get('email')
+        phone=request.POST.get('phone')
+        message=request.POST.get('message')
+        contact = Contact(name=name, email=email, phone_number=phone, message=message)
+        contact.save()
+        return HttpResponseRedirect(reverse('store'))
+    

@@ -24,4 +24,5 @@ urlpatterns = [
     path('admineditcat/<int:id>',views.admineditcat,name='admineditcat'),
     path('del/<int:Cid>/<int:id>/<str:type>',views.Del,name='del'),
     path('pendingNgo/',views.NgoVerify,name='ngoverify'),
+    path('contact/',views.contact,name='contact'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

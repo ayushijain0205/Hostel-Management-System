@@ -124,3 +124,12 @@ class Purchased_item(models.Model):
 
     def __str_ (self):
         return self.name
+    
+
+class Contact(models.Model):
+    name=models.CharField(max_length=255)
+    phone_number=models.CharField(max_length=255)
+    email=models.CharField(max_length=255)
+    message=models.TextField()
+    def __str_ (self):
+        return self.name
